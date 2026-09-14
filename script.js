@@ -1,20 +1,22 @@
 /* =========================================================
    SRI MARUTHI PEST CONTROL SERVICE
-   COMPLETE SCRIPT.JS
+   ELITE OBSIDIAN & EMERALD - COMPLETE SCRIPT.JS
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
-       MOBILE MENU & ACCESSIBILITY
-    ===================================================== */
-    const menuButton = document.getElementById("menu");
-    const mobileNav = document.getElementById("mobileNav");
+       FULLSCREEN CINEMATIC MOBILE MENU & ACCESSIBILITY
+       ===================================================== */
+    const menuButton = document.getElementById("menu") || document.querySelector(".menu-trigger");
+    const fullscreenMenu = document.getElementById("mobileNav") || document.querySelector(".fullscreen-menu");
 
     function closeMobileMenu() {
-        if (!mobileNav || !menuButton) return;
-        mobileNav.classList.remove("active");
+        if (!fullscreenMenu || !menuButton) return;
+        fullscreenMenu.classList.remove("active");
         menuButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("no-scroll");
+        
         const icon = menuButton.querySelector("i");
         if (icon) {
             icon.classList.remove("fa-xmark");
@@ -22,10 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    if (menuButton && mobileNav) {
+    if (menuButton && fullscreenMenu) {
         menuButton.addEventListener("click", function () {
-            const isActive = mobileNav.classList.toggle("active");
+            const isActive = fullscreenMenu.classList.toggle("active");
             menuButton.setAttribute("aria-expanded", isActive ? "true" : "false");
+            document.body.classList.toggle("no-scroll", isActive);
+            
             const icon = menuButton.querySelector("i");
             if (icon) {
                 icon.classList.toggle("fa-bars", !isActive);
@@ -33,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        document.querySelectorAll("#mobileNav a").forEach(function (link) {
+        // Close menu when clicking navigation items inside overlay
+        document.querySelectorAll(".fullscreen-menu a, #mobileNav a").forEach(function (link) {
             link.addEventListener("click", closeMobileMenu);
         });
     }
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        SMOOTH SCROLLING
-    ===================================================== */
+       ===================================================== */
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         link.addEventListener("click", function (event) {
             const targetId = this.getAttribute("href");
@@ -61,18 +66,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        CONSOLIDATED SCROLL HANDLER (PERFORMANCE OPTIMIZED)
-    ===================================================== */
-    const header = document.querySelector("header");
-    const backToTop = document.querySelector(".back-to-top");
+       ===================================================== */
+    const header = document.querySelector(".elite-header") || document.querySelector("header");
+    const backToTop = document.querySelector(".back-to-top") || document.querySelector(".back-top-btn");
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"], .elite-nav a[href^="#"]');
 
     let isTicking = false;
 
     function handleScrollUpdates() {
         const scrollY = window.scrollY;
 
-        // Header background toggle
+        // Header background toggle / scrolled state
         if (header) {
             header.classList.toggle("scrolled", scrollY > 50);
         }
@@ -80,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Back-to-top button visibility
         if (backToTop) {
             backToTop.classList.toggle("show", scrollY > 500);
+            backToTop.classList.toggle("active", scrollY > 500);
         }
 
         // Active navigation highlighting
@@ -122,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        CURRENT YEAR
-    ===================================================== */
+       ===================================================== */
     const yearElement = document.getElementById("year");
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
@@ -131,9 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        SCROLL REVEAL (INTERSECTION OBSERVER)
-    ===================================================== */
+       ===================================================== */
     const revealElements = document.querySelectorAll(
-        ".service-card, .gallery-item, .video-card, .why-item, .stat-box"
+        ".service-card, .bento-card, .gallery-item, .p-item, .video-card, .video-vault-card, .why-item, .stat-box, .matrix-box"
     );
 
     if ("IntersectionObserver" in window) {
@@ -158,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        BOOKING FORM & WHATSAPP INTEGRATION
-    ===================================================== */
+       ===================================================== */
     const bookingForm = document.getElementById("bookingForm");
 
     if (bookingForm) {
@@ -194,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const whatsappMessage = 
 `Hello Sri Maruthi Pest Control Service,
 
-I would like to request a pest control service.
+I would like to request an elite pest control service.
 
 Name: ${name}
 Phone: ${phone}
@@ -216,12 +222,15 @@ Thank you.`;
 
 
     /* =====================================================
-       SERVICE CARD → CONTACT FORM SELECTION
-    ===================================================== */
-    const serviceCards = document.querySelectorAll(".service-card");
+       SERVICE CARDS / BENTO CARDS → CONTACT FORM ROUTING
+       ===================================================== */
+    const serviceTriggers = document.querySelectorAll(".service-card, .bento-card");
 
-    serviceCards.forEach(function (card) {
-        card.addEventListener("click", function () {
+    serviceTriggers.forEach(function (card) {
+        card.addEventListener("click", function (e) {
+            // Avoid triggering if clicking an explicit interactive button inside the card
+            if (e.target.closest("a") && !e.target.closest(".bento-link")) return;
+
             const serviceName = card.querySelector("h3")?.textContent;
             const serviceSelect = document.getElementById("service");
 
@@ -240,17 +249,20 @@ Thank you.`;
                     serviceSelect.value = option.value;
                 }
 
-                document.getElementById("contact")?.scrollIntoView({
-                    behavior: "smooth"
-                });
+                const contactSection = document.getElementById("contact") || document.querySelector(".secure-contact-section");
+                if (contactSection) {
+                    contactSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
             }
         });
     });
 
 
     /* =====================================================
-       INPUT SANITIZATION & FOCUS
-    ===================================================== */
+       INPUT SANITIZATION & FOCUS ROUTING
+       ===================================================== */
     const phoneInputs = document.querySelectorAll('input[type="tel"], #phone');
 
     phoneInputs.forEach(function (input) {
@@ -272,9 +284,9 @@ Thank you.`;
 
 
     /* =====================================================
-       GALLERY LIGHTBOX
-    ===================================================== */
-    const galleryImages = document.querySelectorAll(".gallery-item img, .gallery img");
+       GALLERY & PORTFOLIO LIGHTBOX
+       ===================================================== */
+    const galleryImages = document.querySelectorAll(".gallery-item img, .gallery img, .p-item img");
 
     if (galleryImages.length > 0) {
         const lightbox = document.createElement("div");
@@ -287,7 +299,7 @@ Thank you.`;
             <button class="lightbox-prev" aria-label="Previous image">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
-            <img class="lightbox-image" src="" alt="Gallery image">
+            <img class="lightbox-image" src="" alt="Elite Portfolio Preview">
             <button class="lightbox-next" aria-label="Next image">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
@@ -316,7 +328,8 @@ Thank you.`;
 
         galleryImages.forEach(function (image, index) {
             image.style.cursor = "zoom-in";
-            image.addEventListener("click", function () {
+            image.addEventListener("click", function (e) {
+                e.stopPropagation();
                 showImage(index);
             });
         });
@@ -346,129 +359,8 @@ Thank you.`;
 
 
     /* =====================================================
-       DYNAMIC STYLES (LIGHTBOX & ANIMATIONS)
-    ===================================================== */
-    const animationStyle = document.createElement("style");
-    animationStyle.textContent = `
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        nav a.active {
-            color: var(--primary) !important;
-        }
-
-        header.scrolled {
-            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-        }
-
-        #mobileNav.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .image-error {
-            opacity: 0.4;
-            background: #e5e7eb;
-        }
-
-        .premium-lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            background: rgba(2,8,5,0.94);
-            backdrop-filter: blur(15px);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .premium-lightbox.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-image {
-            max-width: 90vw;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
-        }
-
-        .premium-lightbox button {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 50%;
-            color: #fff;
-            background: rgba(255,255,255,0.08);
-            cursor: pointer;
-            transition: 0.25s ease;
-        }
-
-        .premium-lightbox button:hover {
-            background: #16a34a;
-            transform: scale(1.08);
-        }
-
-        .lightbox-close {
-            top: 25px;
-            right: 25px;
-        }
-
-        .lightbox-prev {
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .lightbox-next {
-            right: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .no-scroll {
-            overflow: hidden;
-        }
-
-        @media(max-width: 600px) {
-            .premium-lightbox {
-                padding: 15px;
-            }
-            .lightbox-prev {
-                left: 10px;
-            }
-            .lightbox-next {
-                right: 10px;
-            }
-            .lightbox-close {
-                top: 15px;
-                right: 15px;
-            }
-        }
-    `;
-    document.head.appendChild(animationStyle);
-
-
-    /* =====================================================
        MEDIA ERROR HANDLING & LOGS
-    ===================================================== */
+       ===================================================== */
     document.querySelectorAll("img, video").forEach(function (media) {
         media.addEventListener("error", function () {
             console.warn("Media could not be loaded:", media.src);
@@ -476,5 +368,5 @@ Thank you.`;
         });
     });
 
-    console.log("Sri Maruthi Pest Control Service website loaded successfully.");
+    console.log("Sri Maruthi Pest Control Service - Elite Obsidian & Emerald system initialized successfully.");
 });
