@@ -147,7 +147,7 @@ img, video {
 
 .desktop-nav {
     display: flex;
-    gap: 2rem;
+    gap: 1.75rem;
 }
 
 .desktop-nav a {
@@ -185,6 +185,15 @@ img, video {
 
 .mobile-navigation {
     display: none;
+}
+
+.mobile-navigation.active {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    gap: 1rem;
 }
 
 /* ==========================================
@@ -527,7 +536,7 @@ img, video {
 }
 
 /* ==========================================
-   PREMIUM INTERACTIVE CARDS & BADGES
+   PREMIUM CARDS & BADGES
    ========================================== */
 .service-card.premium-card {
     position: relative;
@@ -539,7 +548,6 @@ img, video {
     overflow: hidden;
 }
 
-/* Light Reflection Sweep Effect */
 .service-card.premium-card::before {
     content: '';
     position: absolute;
@@ -563,7 +571,6 @@ img, video {
     border-color: var(--primary);
 }
 
-/* Feature Badges */
 .service-badge {
     position: absolute;
     bottom: 12px;
@@ -590,7 +597,6 @@ img, video {
     color: #ffffff;
 }
 
-/* Action Bar & Quick Buttons */
 .card-action-bar {
     display: flex;
     align-items: center;
@@ -603,7 +609,6 @@ img, video {
 .service-link.primary-link {
     color: var(--primary);
     font-weight: 700;
-    transition: var(--transition);
 }
 
 .service-link.primary-link:hover {
@@ -628,7 +633,6 @@ img, video {
     background: var(--primary);
     color: #ffffff;
     transform: rotate(12deg) scale(1.12);
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 /* ==========================================
@@ -688,6 +692,200 @@ img, video {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+/* ==========================================
+   GOOGLE BUSINESS SEARCH CARD
+   ========================================== */
+.google-profile-section {
+    background: #f1f5f9;
+}
+
+.google-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.5rem;
+    max-width: 520px;
+    margin: 0 auto;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.google-card-subhead {
+    display: flex;
+    gap: 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.g-subtab.active {
+    color: #1a73e8;
+    font-weight: 700;
+    border-bottom: 2px solid #1a73e8;
+    padding-bottom: 0.75rem;
+    margin-bottom: -0.75rem;
+}
+
+.google-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.g-biz-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: #1f2937;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.g-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
+}
+
+.g-score {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.g-stars {
+    color: #f59e0b;
+    font-size: 0.8rem;
+}
+
+.g-reviews {
+    color: #1a73e8;
+    font-weight: 600;
+}
+
+.g-category-row {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.g-status-row {
+    font-size: 0.825rem;
+    margin-top: 0.2rem;
+}
+
+.g-status-open {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.g-head-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.g-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f5f9;
+    color: #5f6368;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.google-card-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.25rem 0 1rem 0;
+}
+
+.g-tab {
+    background: #e8f0fe;
+    color: #1967d2;
+    border: none;
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    font-size: 0.825rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.g-tab.active {
+    background: #c2e7ff;
+    color: #001d35;
+}
+
+.google-media-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.g-media-item {
+    position: relative;
+    height: 180px;
+}
+
+.g-media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.g-media-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+}
+
+.google-quick-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.g-action-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    color: #1a73e8;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.g-action-circle i {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e8f0fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.g-action-circle:hover i {
+    background: #1a73e8;
+    color: #ffffff;
 }
 
 /* ==========================================
@@ -847,14 +1045,6 @@ img, video {
 
     .mobile-menu-button {
         display: block;
-    }
-
-    .mobile-navigation.active {
-        display: flex;
-        flex-direction: column;
-        padding: 1.5rem;
-        background: var(--white);
-        border-top: 1px solid var(--border);
     }
 }
 
