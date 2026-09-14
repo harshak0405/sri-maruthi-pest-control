@@ -539,7 +539,7 @@ img, video {
     overflow: hidden;
 }
 
-/* Metallic Light Reflection Sweep */
+/* Light Reflection Sweep Effect */
 .service-card.premium-card::before {
     content: '';
     position: absolute;
@@ -590,7 +590,7 @@ img, video {
     color: #ffffff;
 }
 
-/* Action Bar & Interactive Buttons */
+/* Action Bar & Quick Buttons */
 .card-action-bar {
     display: flex;
     align-items: center;
