@@ -1,5 +1,5 @@
 /* ==========================================
-   RESET & VARIABLES
+   RESET & GLOBAL VARIABLES
    ========================================== */
 :root {
     --primary: #0284c7;
@@ -524,6 +524,111 @@ img, video {
     color: var(--primary);
     font-weight: 700;
     margin-top: 1rem;
+}
+
+/* ==========================================
+   PREMIUM INTERACTIVE CARDS & BADGES
+   ========================================== */
+.service-card.premium-card {
+    position: relative;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    overflow: hidden;
+}
+
+/* Metallic Light Reflection Sweep */
+.service-card.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transition: left 0.75s ease;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.service-card.premium-card:hover::before {
+    left: 130%;
+}
+
+.service-card.premium-card:hover {
+    transform: translateY(-10px) scale(1.015);
+    box-shadow: 0 20px 35px -10px rgba(2, 132, 199, 0.22);
+    border-color: var(--primary);
+}
+
+/* Feature Badges */
+.service-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    z-index: 2;
+}
+
+.service-badge.eco {
+    background: rgba(22, 163, 74, 0.92);
+    color: #ffffff;
+}
+
+.service-badge.alert {
+    background: rgba(225, 29, 72, 0.92);
+    color: #ffffff;
+}
+
+/* Action Bar & Interactive Buttons */
+.card-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.service-link.primary-link {
+    color: var(--primary);
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.service-link.primary-link:hover {
+    color: var(--primary-dark);
+    transform: translateX(4px);
+}
+
+.quick-call-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+}
+
+.quick-call-badge:hover {
+    background: var(--primary);
+    color: #ffffff;
+    transform: rotate(12deg) scale(1.12);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 /* ==========================================
