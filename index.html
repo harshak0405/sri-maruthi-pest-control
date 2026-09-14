@@ -11,10 +11,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Embedded Stylesheet with Updated Background Color -->
+    <!-- Embedded Stylesheet -->
     <style>
         :root {
-            --bg-deep: #0b0f19; /* Updated to a crisp dark slate background */
+            --bg-deep: #0b0f19;
             --bg-card: #131c2e;
             --bg-card-hover: #1a263d;
             --primary: #16a34a;
@@ -517,7 +517,7 @@
         </section>
 
         <!-- =====================================================
-            SERVICES SECTION (CORRECT ROOT IMAGE PATHS)
+            SERVICES SECTION (ALL 8 CARDS WITH CORRECT IMAGES)
         ===================================================== -->
         <section id="services" class="services-section">
             <div class="container">
@@ -528,7 +528,7 @@
                 </div>
 
                 <div class="bento-grid">
-                    <!-- Cockroach Eradication Card -->
+                    <!-- 1. Cockroach Eradication -->
                     <div class="bento-card">
                         <div class="bento-image">
                             <img src="cockroach.jpeg" alt="Cockroach Eradication">
@@ -542,7 +542,7 @@
                         </div>
                     </div>
 
-                    <!-- Termite Armor Card -->
+                    <!-- 2. Termite Armor -->
                     <div class="bento-card">
                         <div class="bento-image">
                             <img src="Termite.jpeg" alt="Termite Armor">
@@ -556,7 +556,7 @@
                         </div>
                     </div>
 
-                    <!-- Bed Bug Elimination Card -->
+                    <!-- 3. Bed Bug Elimination -->
                     <div class="bento-card">
                         <div class="bento-image">
                             <img src="BedBug.jpeg" alt="Bed Bug Elimination">
@@ -570,7 +570,7 @@
                         </div>
                     </div>
 
-                    <!-- Rodent Management Card -->
+                    <!-- 4. Rodent Management -->
                     <div class="bento-card">
                         <div class="bento-image">
                             <img src="rodent.jpeg" alt="Rodent Management">
@@ -580,6 +580,62 @@
                             <div class="bento-icon"><i class="fa-solid fa-shield-cat"></i></div>
                             <h3>Rodent Management</h3>
                             <p>Integrated baiting, tracking, and structural entry-point sealing for complete property security against rats and mice.</p>
+                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Mosquito Suppression -->
+                    <div class="bento-card">
+                        <div class="bento-image">
+                            <img src="cockroach.jpeg" alt="Mosquito Suppression">
+                            <div class="bento-badge">Atmosphere Safe</div>
+                        </div>
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-mosquito"></i></div>
+                            <h3>Mosquito Suppression</h3>
+                            <p>Thermal fogging and larvicidal treatments to safeguard open lawns, balconies, and commercial spaces.</p>
+                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 6. Honey Bee Extraction -->
+                    <div class="bento-card">
+                        <div class="bento-image">
+                            <img src="Termite.jpeg" alt="Honey Bee Extraction">
+                            <div class="bento-badge">Eco Relocation</div>
+                        </div>
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-feather"></i></div>
+                            <h3>Honey Bee Extraction</h3>
+                            <p>Humane, chemical-free hive removal and safe transfer to natural apiaries without harming the colony.</p>
+                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 7. Ant Colony Eradication -->
+                    <div class="bento-card">
+                        <div class="bento-image">
+                            <img src="BedBug.jpeg" alt="Ant Colony Eradication">
+                            <div class="bento-badge">Colony Zero</div>
+                        </div>
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-bug-slash"></i></div>
+                            <h3>Ant Colony Eradication</h3>
+                            <p>Targeted queen-elimination baiting systems designed to wipe out entire subterranean ant networks.</p>
+                            <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 8. General Multi-Pest Care -->
+                    <div class="bento-card">
+                        <div class="bento-image">
+                            <img src="rodent.jpeg" alt="General Multi-Pest Care">
+                            <div class="bento-badge">Omni Defense</div>
+                        </div>
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h3>General Multi-Pest Care</h3>
+                            <p>Comprehensive seasonal barrier treatments ensuring total multi-pest peace of mind year-round.</p>
                             <a href="#contact" class="bento-link">Deploy Protocol <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -616,6 +672,10 @@
                                 <option value="Termite Armor">Termite Armor</option>
                                 <option value="Bed Bug Elimination">Bed Bug Elimination</option>
                                 <option value="Rodent Management">Rodent Management</option>
+                                <option value="Mosquito Suppression">Mosquito Suppression</option>
+                                <option value="Honey Bee Extraction">Honey Bee Extraction</option>
+                                <option value="Ant Colony Eradication">Ant Colony Eradication</option>
+                                <option value="General Multi-Pest Care">General Multi-Pest Care</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -785,14 +845,8 @@ Thank you.`;
                     const serviceSelect = document.getElementById("service");
 
                     if (serviceSelect && serviceName) {
-                        const cleanServiceName = serviceName
-                            .replace(/ Control/gi, "")
-                            .replace(/ Protection/gi, "")
-                            .trim()
-                            .toLowerCase();
-
                         const option = Array.from(serviceSelect.options).find(function (item) {
-                            return item.textContent.toLowerCase().includes(cleanServiceName);
+                            return item.value === serviceName;
                         });
 
                         if (option) {
